@@ -1,5 +1,3 @@
-import { NotImplementedError } from '../extensions/index.js';
-
 /**
  * The MAC-48 address is six groups of two hexadecimal digits (0 to 9 or A to F),
  * separated by hyphens.
@@ -14,7 +12,21 @@ import { NotImplementedError } from '../extensions/index.js';
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-export default function isMAC48Address(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function isMAC48Address(n) {
+  let result = true
+  let array = n.split('-')
+
+  if (array.length == 6) {
+    for (let index = 0; index < array.length; index++) {
+      const element = array[index];
+      console.log(element, element.match(/[A-F]|[0-9]/g))
+      if (element.match(/[A-F]|[0-9]/g).length !== 2) {
+        result = false
+      }
+    }
+  } else {
+    result = false
+  }
+
+  return result
 }
